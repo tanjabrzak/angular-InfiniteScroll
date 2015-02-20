@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="scroll">
     <head>
         <title>Infinite scroll example</title>
         <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
         <script type="text/javascript" src="scroll.js"></script>
     	<link href="my.css" rel="stylesheet">
     </head>
-    <body ng-controller="Main" ng-app="scroll">
-        <div id="fixed" when-scrolled="loadMore()">
+    <body ng-controller="scrollCtrl">
+        <div class="fixed" when-scrolled="loadMore()">
           <ul>
             <li ng-repeat="i in items">{{i.id}}</li>
           </ul>  
         </div>
+		<button ng-click="loadMore()">Click me!</button>
     </body>
 </html>

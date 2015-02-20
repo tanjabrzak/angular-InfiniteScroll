@@ -1,4 +1,17 @@
-function Main($scope) {
+angular.module('scroll', [])
+.directive('whenScrolled', function() {
+    return function(scope, elm, attr) {
+        var raw = elm[0];
+        
+        elm.bind('scroll', function() {
+            if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
+                scope.$apply(attr.whenScrolled);
+            }
+        });
+    };
+})
+.controller('scrollCtrl', function($scope) {
+
     $scope.items = [];
     
     var counter = 0;
@@ -9,17 +22,6 @@ function Main($scope) {
         }
     };
     
-    $scope.loadMore();
-}
+    //$scope.loadMore();
 
-angular.module('scroll', []).directive('whenScrolled', function() {
-    return function(scope, elm, attr) {
-        var raw = elm[0];
-        
-        elm.bind('scroll', function() {
-            if (raw.scrollTop + raw.offsetHeight >= raw.scrollHeight) {
-                scope.$apply(attr.whenScrolled);
-            }
-        });
-    };
 });

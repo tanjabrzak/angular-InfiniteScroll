@@ -3,7 +3,7 @@ li {
   border-bottom: 1px solid gray;
 }
 
-#fixed {
+.fixed {
     height: 400px;
     overflow: auto;
 }
