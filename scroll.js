@@ -1,5 +1,6 @@
-angular.module('scroll', [])
-.directive('whenScrolled', function() {
+var app = angular.module('scroll', []);
+
+app.directive('whenScrolled', function() {
     return function(scope, elm, attr) {
         var raw = elm[0];
         
@@ -9,19 +10,18 @@ angular.module('scroll', [])
             }
         });
     };
-})
-.controller('scrollCtrl', function($scope) {
+});
 
+app.controller('scrollCtrl', function($scope) {
     $scope.items = [];
-    
+	
     var counter = 0;
+	
     $scope.loadMore = function() {
         for (var i = 0; i < 5; i++) {
             $scope.items.push({id: counter});
             counter += 10;
         }
     };
-    
     //$scope.loadMore();
-
 });
