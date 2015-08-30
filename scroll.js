@@ -1,4 +1,17 @@
-var app = angular.module('scroll', []);
+var app = angular.module('scroll', ['ngRoute']);
+
+app.config( ['$routeProvider', function($routeProvider) {
+	$routeProvider
+		.when('/first', {
+			templateUrl: 'first.html'
+		})
+		.when('/second', {
+			templateUrl: 'second.html'
+		})
+		.otherwise({
+			redirectTo: '/'
+		});
+}]);
 
 app.directive('whenScrolled', function() {
     return function(scope, elm, attr) {
@@ -9,6 +22,14 @@ app.directive('whenScrolled', function() {
                 scope.$apply(attr.whenScrolled);
             }
         });
+		
+		scope.$on(
+            '$destroy',
+            function handleDestroyEvent() {
+                console.log( 'destroyed' );
+                elm.unbind('scroll');
+            }
+		);
     };
 });
 
