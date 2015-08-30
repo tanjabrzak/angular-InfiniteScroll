@@ -34,6 +34,9 @@ app.directive('whenScrolled', function() {
 });
 
 app.controller('scrollCtrl', function($scope) {
+	
+	$scope.toggle = {showClickMe: true};
+	
     $scope.items = [];
     
     var counter = 0;
