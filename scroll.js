@@ -1,16 +1,16 @@
 var app = angular.module('scroll', ['ngRoute']);
 
 app.config( ['$routeProvider', function($routeProvider) {
-	$routeProvider
-		.when('/first', {
-			templateUrl: 'first.html'
-		})
-		.when('/second', {
-			templateUrl: 'second.html'
-		})
-		.otherwise({
-			redirectTo: '/'
-		});
+    $routeProvider
+        .when('/first', {
+            templateUrl: 'first.html'
+        })
+        .when('/second', {
+            templateUrl: 'second.html'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
 }]);
 
 app.directive('whenScrolled', function() {
@@ -22,22 +22,22 @@ app.directive('whenScrolled', function() {
                 scope.$apply(attr.whenScrolled);
             }
         });
-		
-		scope.$on(
+        
+        scope.$on(
             '$destroy',
             function handleDestroyEvent() {
                 console.log( 'destroyed' );
                 elm.unbind('scroll');
             }
-		);
+        );
     };
 });
 
 app.controller('scrollCtrl', function($scope) {
     $scope.items = [];
-	
+    
     var counter = 0;
-	
+    
     $scope.loadMore = function() {
         for (var i = 0; i < 5; i++) {
             $scope.items.push({id: counter});
